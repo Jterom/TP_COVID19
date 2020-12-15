@@ -5,21 +5,22 @@ using System.Text;
 
 namespace TP_COVID19.ORM
 {
-    public class Personne
+    class Vaccination
     {
 
         [Key]
         public int Id { get; set; }
 
         [MaxLength(50)]
-        public string Nom { get; set; }
+        public string Vaccin { get; set; }
 
         [MaxLength(50)]
-        public string Prenom { get; set; }
-        // "?" veut dire que la valeur nulle est acceptée
-        public bool? Sexe { get; set; }
+        public string Type { get; set; }
 
-        public bool Statut { get; set; }
+
+        [MaxLength(50)]
+        public DateTime Date { get; set; }
+        // "?" veut dire que la valeur nulle est acceptée
 
     }
 }
