@@ -11,15 +11,17 @@ namespace TP_COVID19.ORM
         [Key]
         public int Id { get; set; }
 
-        [MaxLength(50)]
+        [MaxLength(20)]
         public string Nom { get; set; }
 
-        [MaxLength(50)]
+        [MaxLength(20)]
         public string Prenom { get; set; }
         // "?" veut dire que la valeur nulle est acceptée
         public bool? Sexe { get; set; }
 
         public bool Statut { get; set; }
+
+        public DateTime DateNaissance { get; set; }
 
     }
 }

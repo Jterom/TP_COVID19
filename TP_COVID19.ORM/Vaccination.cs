@@ -11,16 +11,18 @@ namespace TP_COVID19.ORM
         [Key]
         public int Id { get; set; }
 
-        [MaxLength(50)]
-        public string Vaccin { get; set; }
+        [MaxLength(20)]
+        public string NomMarque { get; set; }
 
         [MaxLength(50)]
-        public string Type { get; set; }
+        public string NomMaladie { get; set; }
+
+        public int NumeroLot { get; set; }
 
 
-        [MaxLength(50)]
-        public DateTime Date { get; set; }
-        // "?" veut dire que la valeur nulle est acceptée
+        public DateTime DateAdmission { get; set; }
+
+        public DateTime DateRappel { get; set; }
 
     }
 }
