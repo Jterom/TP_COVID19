@@ -5,7 +5,7 @@ using System.Text;
 
 namespace TP_COVID19.ORM
 {
-    class Vaccination
+    public class Vaccination
     {
 
         [Key]
