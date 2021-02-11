@@ -14,6 +14,7 @@ namespace TP_COVID19.Web.Models
         public string Prenom { get; set; }
         public bool Statut { get; set; }
         public bool? Sexe { get; set; }
+        public DateTime DateNaissance { get; set; }
         public ICollection<Vaccination> Vaccinations { get; set; }
     }
 }
