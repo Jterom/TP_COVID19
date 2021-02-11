@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace TP_COVID19.Web.Models
 {
-    public class Vaccination
+    public class Vaccin
     {
         [Key]
         public int ID { get; set; }
-        public DateTime Date { get; set; }
+        public string Nom { get; set; }
+        public ICollection<Vaccination> Vaccinations { get; set; }
     }
 }
