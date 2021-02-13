@@ -14,11 +14,6 @@ namespace TP_COVID19.Web.Controllers
     {
         private readonly Context _context = new Context();
 
-        /*public VaccinsController(Context context)
-        {
-            _context = context;
-        }*/
-
         // GET: Vaccins
         public async Task<IActionResult> Index()
         {

@@ -9,8 +9,8 @@ using TP_COVID19.ORM;
 namespace TP_COVID19.ORM.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20210212190928_ajoutID")]
-    partial class ajoutID
+    [Migration("20210213140233_addforenkey")]
+    partial class addforenkey
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -67,10 +67,10 @@ namespace TP_COVID19.ORM.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("IDPatientID")
+                    b.Property<int>("IDPatientId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("IDVaccinID")
+                    b.Property<int>("IDVaccinId")
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("Rappel")
@@ -78,9 +78,9 @@ namespace TP_COVID19.ORM.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("IDPatientID");
+                    b.HasIndex("IDPatientId");
 
-                    b.HasIndex("IDVaccinID");
+                    b.HasIndex("IDVaccinId");
 
                     b.ToTable("Vaccinations");
                 });
@@ -89,11 +89,15 @@ namespace TP_COVID19.ORM.Migrations
                 {
                     b.HasOne("TP_COVID19.Web.Models.Patient", "IDPatient")
                         .WithMany("Vaccinations")
-                        .HasForeignKey("IDPatientID");
+                        .HasForeignKey("IDPatientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("TP_COVID19.Web.Models.Vaccin", "IDVaccin")
                         .WithMany("Vaccinations")
-                        .HasForeignKey("IDVaccinID");
+                        .HasForeignKey("IDVaccinId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("IDPatient");
 

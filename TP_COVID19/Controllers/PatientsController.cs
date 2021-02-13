@@ -14,13 +14,18 @@ namespace TP_COVID19.Web.Controllers
     {
         private readonly Context _context = new Context();
 
-        /*public PatientsController(Context context)
-        {
-            _context = context;
-        }*/
-
         // GET: Patients
         public async Task<IActionResult> Index()
+        {
+            return View(await _context.Personnes.ToListAsync());
+        }
+        
+        public async Task<IActionResult> PasCovid()
+        {
+            return View(await _context.Personnes.ToListAsync());
+        }
+        
+        public async Task<IActionResult> Grippe()
         {
             return View(await _context.Personnes.ToListAsync());
         }

@@ -14,15 +14,16 @@ namespace TP_COVID19.Web.Controllers
     {
         private readonly Context _context = new Context();
 
-        /*public VaccinationsController(Context context)
-        {
-            _context = context;
-        }*/
-
         // GET: Vaccinations
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Vaccinations.ToListAsync());
+            var context = _context.Vaccinations.Include(v => v.IDPatient).Include(v => v.IDVaccin);
+            return View(await context.ToListAsync());
+        }
+        public async Task<IActionResult> Rappel()
+        {
+            var context = _context.Vaccinations.Include(v => v.IDPatient).Include(v => v.IDVaccin);
+            return View(await context.ToListAsync());
         }
 
         // GET: Vaccinations/Details/5
@@ -34,6 +35,8 @@ namespace TP_COVID19.Web.Controllers
             }
 
             var vaccination = await _context.Vaccinations
+                .Include(v => v.IDPatient)
+                .Include(v => v.IDVaccin)
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (vaccination == null)
             {
@@ -46,6 +49,8 @@ namespace TP_COVID19.Web.Controllers
         // GET: Vaccinations/Create
         public IActionResult Create()
         {
+            ViewData["IDPatientId"] = new SelectList(_context.Personnes, "ID", "ID");
+            ViewData["IDVaccinId"] = new SelectList(_context.Vaccins, "ID", "ID");
             return View();
         }
 
@@ -54,7 +59,7 @@ namespace TP_COVID19.Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,IDVaccin,IDPatient,Date,Rappel")] Vaccination vaccination)
+        public async Task<IActionResult> Create([Bind("ID,IDVaccinId,IDPatientId,Date,Rappel")] Vaccination vaccination)
         {
             if (ModelState.IsValid)
             {
@@ -62,6 +67,8 @@ namespace TP_COVID19.Web.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["IDPatientId"] = new SelectList(_context.Personnes, "ID", "ID", vaccination.IDPatientId);
+            ViewData["IDVaccinId"] = new SelectList(_context.Vaccins, "ID", "ID", vaccination.IDVaccinId);
             return View(vaccination);
         }
 
@@ -78,6 +85,8 @@ namespace TP_COVID19.Web.Controllers
             {
                 return NotFound();
             }
+            ViewData["IDPatientId"] = new SelectList(_context.Personnes, "ID", "ID", vaccination.IDPatientId);
+            ViewData["IDVaccinId"] = new SelectList(_context.Vaccins, "ID", "ID", vaccination.IDVaccinId);
             return View(vaccination);
         }
 
@@ -86,7 +95,7 @@ namespace TP_COVID19.Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,IDVaccin,IDPatient,Date,Rappel")] Vaccination vaccination)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,IDVaccinId,IDPatientId,Date,Rappel")] Vaccination vaccination)
         {
             if (id != vaccination.ID)
             {
@@ -113,6 +122,8 @@ namespace TP_COVID19.Web.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["IDPatientId"] = new SelectList(_context.Personnes, "ID", "ID", vaccination.IDPatientId);
+            ViewData["IDVaccinId"] = new SelectList(_context.Vaccins, "ID", "ID", vaccination.IDVaccinId);
             return View(vaccination);
         }
 
@@ -125,6 +136,8 @@ namespace TP_COVID19.Web.Controllers
             }
 
             var vaccination = await _context.Vaccinations
+                .Include(v => v.IDPatient)
+                .Include(v => v.IDVaccin)
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (vaccination == null)
             {
