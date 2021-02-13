@@ -8,6 +8,7 @@ using TP_COVID19.Web.Models;
 
 namespace TP_COVID19.ORM
 {
+
     public class Context : Microsoft.EntityFrameworkCore.DbContext
     {
         public DbSet<Patient> Personnes { get; set; }
@@ -17,5 +18,6 @@ namespace TP_COVID19.ORM
         {
             options.UseSqlite("Data Source=Covid.db");
         }
+        
     }
 }

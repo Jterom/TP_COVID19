@@ -54,7 +54,7 @@ namespace TP_COVID19.Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Date")] Vaccination vaccination)
+        public async Task<IActionResult> Create([Bind("ID,IDVaccin,IDPatient,Date,Rappel")] Vaccination vaccination)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace TP_COVID19.Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Date")] Vaccination vaccination)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,IDVaccin,IDPatient,Date,Rappel")] Vaccination vaccination)
         {
             if (id != vaccination.ID)
             {

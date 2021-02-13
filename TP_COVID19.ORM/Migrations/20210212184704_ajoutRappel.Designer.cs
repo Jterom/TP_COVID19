@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TP_COVID19.ORM;
 
 namespace TP_COVID19.ORM.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20210212184704_ajoutRappel")]
+    partial class ajoutRappel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -65,37 +67,33 @@ namespace TP_COVID19.ORM.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("IDPatientID")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int?>("IDVaccinID")
+                    b.Property<int?>("PatientID")
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("Rappel")
                         .HasColumnType("TEXT");
 
+                    b.Property<int?>("VaccinID")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("ID");
 
-                    b.HasIndex("IDPatientID");
+                    b.HasIndex("PatientID");
 
-                    b.HasIndex("IDVaccinID");
+                    b.HasIndex("VaccinID");
 
                     b.ToTable("Vaccinations");
                 });
 
             modelBuilder.Entity("TP_COVID19.Web.Models.Vaccination", b =>
                 {
-                    b.HasOne("TP_COVID19.Web.Models.Patient", "IDPatient")
+                    b.HasOne("TP_COVID19.Web.Models.Patient", null)
                         .WithMany("Vaccinations")
-                        .HasForeignKey("IDPatientID");
+                        .HasForeignKey("PatientID");
 
-                    b.HasOne("TP_COVID19.Web.Models.Vaccin", "IDVaccin")
+                    b.HasOne("TP_COVID19.Web.Models.Vaccin", null)
                         .WithMany("Vaccinations")
-                        .HasForeignKey("IDVaccinID");
-
-                    b.Navigation("IDPatient");
-
-                    b.Navigation("IDVaccin");
+                        .HasForeignKey("VaccinID");
                 });
 
             modelBuilder.Entity("TP_COVID19.Web.Models.Patient", b =>
