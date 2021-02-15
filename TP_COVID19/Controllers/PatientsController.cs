@@ -19,7 +19,12 @@ namespace TP_COVID19.Web.Controllers
         {
             return View(await _context.Personnes.ToListAsync());
         }
-        
+
+        public async Task<IActionResult> Rappel()
+        {
+            return View(await _context.Personnes.Where(p => p.Vaccinations.Any(v => v.Rappel < DateTime.Now)).ToListAsync());
+        }
+
         public async Task<IActionResult> PasCovid()
         {
             return View(await _context.Personnes.Where(p => !p.Vaccinations.Any(v => v.IDVaccin.Nom == "COVID19")).ToListAsync());

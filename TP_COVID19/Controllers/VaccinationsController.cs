@@ -20,11 +20,6 @@ namespace TP_COVID19.Web.Controllers
             var context = _context.Vaccinations.Include(v => v.IDPatient).Include(v => v.IDVaccin);
             return View(await context.ToListAsync());
         }
-        public async Task<IActionResult> Rappel()
-        {
-            var context = _context.Vaccinations.Include(v => v.IDPatient).Include(v => v.IDVaccin);
-            return View(await context.ToListAsync());
-        }
 
         // GET: Vaccinations/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -51,6 +46,8 @@ namespace TP_COVID19.Web.Controllers
         {
             ViewData["IDPatientId"] = new SelectList(_context.Personnes, "ID", "ID");
             ViewData["IDVaccinId"] = new SelectList(_context.Vaccins, "ID", "ID");
+            ViewData["IDPatientNom"] = new SelectList(_context.Personnes, "ID", "Nom");
+            ViewData["IDVaccinNom"] = new SelectList(_context.Vaccins, "ID", "Nom");
             return View();
         }
 
