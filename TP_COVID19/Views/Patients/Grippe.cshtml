@@ -30,17 +30,6 @@
     <tbody>
         @foreach (var item in Model)
         {
-            int i = 0;
-            foreach (var vac in item.Vaccinations)
-            {
-                if (vac.Date.Year == DateTime.Now.Year && vac.IDVaccin.Nom=="Grippe")
-                { }
-                else
-                {
-                    i = 1;
-                }
-                if (i == 1)
-                {
                     <tr>
                         <td>
                             @Html.DisplayFor(modelItem => item.Nom)
@@ -59,7 +48,5 @@
                         </td>
                     </tr>
                 }
-            }
-        }
     </tbody>
 </table>

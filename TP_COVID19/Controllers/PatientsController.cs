@@ -22,12 +22,12 @@ namespace TP_COVID19.Web.Controllers
         
         public async Task<IActionResult> PasCovid()
         {
-            return View(await _context.Personnes.ToListAsync());
+            return View(await _context.Personnes.Where(p => !p.Vaccinations.Any(v => v.IDVaccin.Nom == "COVID19")).ToListAsync());
         }
         
         public async Task<IActionResult> Grippe()
         {
-            return View(await _context.Personnes.ToListAsync());
+            return View(await _context.Personnes.Where(p => !p.Vaccinations.Any(v => v.IDVaccin.Nom == "Grippe" && v.Date.Year == DateTime.Now.Year)).ToListAsync());
         }
 
         // GET: Patients/Details/5

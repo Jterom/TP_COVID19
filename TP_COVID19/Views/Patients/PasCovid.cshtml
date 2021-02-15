@@ -30,17 +30,6 @@
         <tbody>
             @foreach (var item in Model)
             {
-                int i = 0;
-                foreach (var vac in item.Vaccinations)
-                {
-                    if (vac.IDVaccin.Nom == "COVID19")
-                    { }
-                    else
-                    {
-                        i = 1;
-                    }
-                    if (i == 1)
-                    {
                         <tr>
                             <td>
                                 @Html.DisplayFor(modelItem => item.Nom)
@@ -58,8 +47,6 @@
                                 @Html.DisplayFor(modelItem => item.DateNaissance)
                             </td>
                         </tr>
-                    }
                 }
-            }
         </tbody>
     </table>
