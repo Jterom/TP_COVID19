@@ -43,7 +43,18 @@
                 @Html.DisplayFor(modelItem => item.Statut)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Sexe)
+                @if (item.Sexe == true)
+                {
+                    <p>Homme</p>
+                }
+                else if (item.Sexe == false)
+                {
+                    <p>Femme</p>
+                }
+                else
+                {
+                    <p>-</p>
+                }
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.DateNaissance)
