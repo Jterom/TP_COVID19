@@ -14,15 +14,25 @@ namespace TP_COVID19.Web.Controllers
     {
         private readonly Context _context = new Context();
 
-        /*public PatientsController(Context context)
-        {
-            _context = context;
-        }*/
-
         // GET: Patients
         public async Task<IActionResult> Index()
         {
             return View(await _context.Personnes.ToListAsync());
+        }
+
+        public async Task<IActionResult> Rappel()
+        {
+            return View(await _context.Personnes.Where(p => p.Vaccinations.Any(v => v.Rappel < DateTime.Now)).ToListAsync());
+        }
+
+        public async Task<IActionResult> PasCovid()
+        {
+            return View(await _context.Personnes.Where(p => !p.Vaccinations.Any(v => v.IDVaccin.Nom == "COVID19")).ToListAsync());
+        }
+        
+        public async Task<IActionResult> Grippe()
+        {
+            return View(await _context.Personnes.Where(p => !p.Vaccinations.Any(v => v.IDVaccin.Nom == "Grippe" && v.Date.Year == DateTime.Now.Year)).ToListAsync());
         }
 
         // GET: Patients/Details/5

@@ -19,7 +19,7 @@
                 @Html.DisplayNameFor(model => model.Prenom)
             </th>
             <th>
-                Personnel?
+                @Html.DisplayNameFor(model => model.Statut)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Sexe)
@@ -27,9 +27,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.DateNaissance)
             </th>
-            <th>
-
-            </th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -42,14 +40,7 @@
                 @Html.DisplayFor(modelItem => item.Prenom)
             </td>
             <td>
-                @if (item.Statut == true)
-                {
-                    <p>Oui</p>
-                }
-                else
-                {
-                    <p>Non</p>
-                }
+                @Html.DisplayFor(modelItem => item.Statut)
             </td>
             <td>
                 @if (item.Sexe == true)

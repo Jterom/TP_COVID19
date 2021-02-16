@@ -11,6 +11,6 @@ namespace TP_COVID19.Web.Models
         [Key]
         public int ID { get; set; }
         public string Nom { get; set; }
-        public ICollection<Vaccination> Vaccinations { get; set; }
+        public List<Vaccination> Vaccinations { get; set; }
     }
 }
